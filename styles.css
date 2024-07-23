@@ -1,0 +1,264 @@
+/* General Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    color: rgb(235, 157, 12);
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#background-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+}
+
+/* Container */
+.container {
+    background: transparent;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Section */
+.profile {
+    margin-bottom: 20px;
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.profile-pic:hover {
+    transform: scale(1.1);
+}
+
+.profile h1 {
+    margin: 1px 0 1px;
+    font-size: 28px;
+    color: #fff;
+    background: linear-gradient(45deg, #f78400, #ffaf02);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient 3s linear infinite;
+    text-shadow: 0 0 10px rgba(110, 66, 0, 0.8);
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Links Section */
+.links .link {
+    display: block;
+    text-decoration: none;
+    color: #dd9103;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.links .link:hover {
+    background-color: #dd9103;
+    color: #fff;
+}
+
+.links .link i {
+    margin-right: 10px;
+}
+
+/* Style for Visit Counter */
+.visit-counter {
+    position: fixed;
+    bottom: 20px;
+    left: 200px;
+    background: transparent;
+    color: #dd9103;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    box-shadow: transparent;
+}
+
+.visit-counter i {
+    margin-right: 5px;
+}
+
+/* Keyframes for typing animation */
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* Keyframes for cursor animation */
+@keyframes blink {
+    0% { border-right: 2px solid transparent; }
+    100% { border-right: 2px solid #fff; }
+}
+
+/* Typewriter effect styles */
+.typewriter {
+    display: inline-block;
+    font-family: monospace; /* Monospace font gives a typewriter feel */
+    font-size: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #fff; /* Cursor style */
+    animation: typing 4s steps(40, end) 1s 1 normal both, blink 0.75s step-end infinite;
+    color: #ffb14c; /* Text color */
+}
+
+/* Hide the audio element */
+#audio-background {
+    display: none;
+}
+
+/* Style for the volume control */
+.volume-control {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.volume-control input[type="range"] {
+    margin-left: 10px;
+    width: 100px;
+}
+
+.profile h1 .badge-container {
+    position: relative;
+    display: inline-block;
+}
+
+.profile h1 .badge-container .tooltip {
+    visibility: hidden;
+    background-color: #444; /* Background color */
+    color: #fff; /* Text color */
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position above the badge */
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+    width: 120px; /* Width of the tooltip */
+    filter: none; /* Ensure no filter is applied */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Optional shadow */
+    font-size: 14px; /* Font size for clarity */
+    text-rendering: geometricPrecision; /* Ensure sharp text rendering */
+    -webkit-font-smoothing: antialiased; /* For better font rendering in WebKit browsers */
+    -moz-osx-font-smoothing: grayscale; /* For better font rendering in Firefox */
+    backface-visibility: hidden; /* Prevent any blurring caused by transformations */
+}
+
+.profile h1 .badge-container .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #444 transparent transparent transparent; /* Match the background color */
+}
+
+.profile h1 .badge-container:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.profile-name-container {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-name-container .tooltip {
+    visibility: hidden;
+    background-color: #333; /* Background color of the tooltip */
+    color: #fff; /* Text color */
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position above the profile name */
+    left: 50%;
+    margin-left: -60px; /* Center the tooltip */
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+    width: 120px; /* Width of the tooltip */
+    filter: none; /* Ensure no filter is applied */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Optional shadow */
+    font-size: 14px; /* Font size for clarity */
+    text-rendering: geometricPrecision; /* Ensure sharp text rendering */
+    -webkit-font-smoothing: antialiased; /* For better font rendering in WebKit browsers */
+    -moz-osx-font-smoothing: grayscale; /* For better font rendering in Firefox */
+    backface-visibility: hidden; /* Prevent any blurring caused by transformations */
+}
+
+.profile-name-container .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent; /* Match the background color */
+}
+
+.profile-name-container:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}

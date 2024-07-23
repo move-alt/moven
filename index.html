@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Move's Bio Link</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* General Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            color: rgb(253, 186, 0);
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        #background-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        .container {
+            background: transparent;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgb(0, 0, 0);
+        }
+
+        .profile {
+            margin-bottom: 20px;
+        }
+
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.1);
+        }
+
+        .profile h1 {
+            margin: 10px 0 5px;
+            font-size: 24px;
+            color: #f7b054;
+            background: linear-gradient(45deg, #f78809, #b46205);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 10s linear infinite;
+            text-shadow: 0 0 10px #c98914;
+        }
+
+        .profile h1 .badge-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile h1 .badge {
+            width: 24px;
+            height: 24px;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+
+        .profile h1 .badge-container .tooltip {
+            visibility: hidden;
+            background-color: #444; /* Background color */
+            color: #fff; /* Text color */
+            text-align: center;
+            border-radius: 5px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position above the image */
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+            width: 120px; /* Width of the tooltip */
+            filter: none; /* Ensure no filter is applied */
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Optional shadow */
+        }
+
+        .profile h1 .badge-container .tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #44444400 transparent transparent transparent; /* Match the background color */
+        }
+
+        .profile h1 .badge-container:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .links .link {
+            display: block;
+            text-decoration: none;
+            color: #c98914;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .links .link:hover {
+            background-color: #c98914;
+            color: #fff;
+        }
+
+        .links .link i {
+            margin-right: 10px;
+        }
+
+        /* Style for Visit Counter */
+        .visit-counter {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background: transparent;
+            color: #c98914;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .visit-counter i {
+            margin-right: 5px;
+        }
+
+        /* Style for the volume control */
+        .volume-control {
+            position: fixed;
+            bottom: 15px;
+            right: 10px;
+            background: transparent;
+            color: #c98914;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .volume-control input[type="range"] {
+            margin-left: 10px;
+            width: 100px;
+        }
+
+        /* Typewriter effect styles */
+        .typewriter {
+            display: inline-block;
+            font-family: monospace;
+            font-size: 18px;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid #fff;
+            color: #ffb14c;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            0% { border-right: 2px solid transparent; }
+            100% { border-right: 2px solid #fff; }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-background">
+        <video autoplay muted loop id="background-video">
+            <source src="background.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="content">
+        <div class="container">
+            <div class="profile">
+                <img src="profile-pic.gif" alt="Profile Picture" class="profile-pic">
+                <h1>Move 
+                    <span class="badge-container">
+                        <img src="badge1.gif" alt="Badge 1" class="badge">
+                        <span class="tooltip">love</span>
+                    </span>
+                    <span class="badge-container">
+                        <img src="badge2.gif" alt="Badge 2" class="badge">
+                        <span class="tooltip">love</span>
+                    </span>
+                </h1>
+                <p id="typewriter-text" class="typewriter">Welcome to my personal bio link page.</p>
+            </div>
+            <div class="links">
+                <a href="https://steamcommunity.com/id/movendeMovies/" target="_blank" class="link"><i class="fab fa-steam"></i> Steam</a>
+                <a href="https://guns.lol/move" target="_blank" class="link"><i class="fab fa-github"></i> Github</a>
+                <a href="https://discord.com/invite/WUBQ9eucRr" target="_blank" class="link"><i class="fab fa-discord"></i> Discord</a>
+                <a href="https://open.spotify.com/user/zerberus05" target="_blank" class="link"><i class="fab fa-spotify"></i> Spotify</a>
+            </div>
+        </div>
+    </div>
+    <div id="visit-counter" class="visit-counter">
+        <i class="fas fa-eye"></i> <span id="counter">0</span> Visits
+    </div>
+    <div class="volume-control">
+        <label for="volume-slider">Volume:</label>
+        <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
+    </div>
+    <audio id="background-audio" autoplay loop>
+        <source src="background.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get the counter element
+            const counterElement = document.getElementById('counter');
+
+            // Retrieve visit count from local storage
+            let visitCount = localStorage.getItem('visitCount');
+            if (visitCount === null) {
+                // Initialize visit count if not present
+                visitCount = 0;
+            }
+
+            // Increment visit count
+            visitCount = parseInt(visitCount) + 1;
+
+            // Update local storage with new visit count
+            localStorage.setItem('visitCount', visitCount);
+
+            // Update counter element
+            counterElement.textContent = visitCount;
+
+            // Get the audio element and volume slider
+            const audioElement = document.getElementById('background-audio');
+            const volumeSlider = document.getElementById('volume-slider');
+
+            // Set the initial volume from the slider value
+            audioElement.volume = volumeSlider.value;
+
+            // Add an event listener to update the audio volume when the slider value changes
+            volumeSlider.addEventListener('input', (event) => {
+                audioElement.volume = event.target.value;
+            });
+
+            // Typewriter effect code
+            const textElement = document.getElementById('typewriter-text');
+            const text = textElement.textContent;
+            let index = 0;
+            let isDeleting = false;
+            const typingSpeed = 100; // Speed of typing in ms
+            const deletingSpeed = 50; // Speed of deleting in ms
+            const pauseDuration = 1000; // Pause before retyping
+
+            function type() {
+                if (index < text.length) {
+                    textElement.textContent = text.slice(0, index + 1) + '|';
+                    index++;
+                    setTimeout(type, typingSpeed);
+                } else {
+                    setTimeout(deleteText, pauseDuration);
+                }
+            }
+
+            function deleteText() {
+                if (index > 0) {
+                    textElement.textContent = text.slice(0, index - 1) + '|';
+                    index--;
+                    setTimeout(deleteText, deletingSpeed);
+                } else {
+                    setTimeout(type, pauseDuration);
+                }
+            }
+
+            function startTypingEffect() {
+                type();
+            }
+
+            startTypingEffect();
+        });
+    </script>
+</body>
+</html>
