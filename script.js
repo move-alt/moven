@@ -64,4 +64,48 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     startTypingEffect();
+
+    // Chart.js Dstat graph code
+    const ctx = document.getElementById('dstatGraph').getContext('2d');
+
+    const dstatGraph = new Chart(ctx, {
+        type: 'line', // Define the type of chart
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'], // Sample data for the x-axis
+            datasets: [{
+                label: 'CPU Usage',
+                data: [65, 59, 80, 81, 56, 55, 40], // Sample data for the y-axis
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: false
+            }, {
+                label: 'Memory Usage',
+                data: [28, 48, 40, 19, 86, 27, 90], // Sample data for the y-axis
+                borderColor: 'rgba(153, 102, 255, 1)',
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Month'
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Usage (%)'
+                    },
+                    suggestedMin: 0,
+                    suggestedMax: 100
+                }
+            }
+        }
+    });
 });
