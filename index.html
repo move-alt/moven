@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.5.2/collection/components/icon/icon.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         /* General Styles */
         body, html {
@@ -221,6 +222,22 @@
             0% { border-right: 2px solid transparent; }
             100% { border-right: 2px solid #fff; }
         }
+
+        /* Dstat graph styles */
+        .dstat-container {
+            margin-top: 20px;
+            width: 90%;
+            max-width: 800px;
+            background: transparent;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .dstat-container canvas {
+            width: 100% !important;
+            height: auto !important;
+        }
     </style>
 </head>
 <body>
@@ -252,6 +269,11 @@
                 <a href="https://discord.com/invite/WUBQ9eucRr" target="_blank" class="link"><i class="fab fa-discord"></i> Discord</a>
                 <a href="https://open.spotify.com/user/zerberus05" target="_blank" class="link"><i class="fab fa-spotify"></i> Spotify</a>
             </div>
+        </div>
+
+        <!-- Dstat Graph Container -->
+        <div class="dstat-container">
+            <canvas id="dstat-graph"></canvas>
         </div>
     </div>
     <div id="visit-counter" class="visit-counter">
@@ -332,6 +354,33 @@
             }
 
             startTypingEffect();
+
+            // Chart.js Dstat graph
+            const ctx = document.getElementById('dstat-graph').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                    datasets: [{
+                        label: 'Dstat Data',
+                        data: [65, 59, 80, 81, 56, 55],
+                        borderColor: 'rgba(253, 186, 0, 1)',
+                        backgroundColor: 'rgba(253, 186, 0, 0.2)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
         });
     </script>
 </body>
